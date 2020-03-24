@@ -5,14 +5,16 @@ using System.Threading.Tasks;
 using RestSharp;
 using RestSharp.Authenticators;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Text.Json;
 
 namespace lab4
 {
     class Program
     {
+
         static async Task Main(string[] args)
         {
             #region RestSharp WEBSITE READING
@@ -68,22 +70,58 @@ namespace lab4
             //sw.Stop();xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             #endregion
 
+            #region API TEAMS W
+            using var context = new TeamsContext();
+            context.Database.EnsureCreated();
 
-            var apiTeams = new Website("https://api.collegefootballdata.com/");
-            var data = await apiTeams.DownloadAsync("/teams/fbs?year=2020");
-            var dataStr = data.Content;
-            dataStr = dataStr.Remove(0, 1);
-            dataStr = dataStr.Remove(dataStr.Length - 1, 1);
-            string[] teams = dataStr.Split('{', '}');
-            var stringToObj = teams.Where(n => !(string.IsNullOrEmpty(n) || n == ",")).ToArray();
-            using var teamsDB = new TeamsContext();
-            teamsDB.Database.EnsureCreated();
-            for (int i = 0; i < stringToObj.Length; i++)
+            var api = new RestClient("https://api.collegefootballdata.com/");
+            var teamsData = new RestRequest($"/teams/fbs?year=2019", Method.GET);
+            var response = await api.ExecuteAsync(teamsData);
+            var content = response.Content;
+            var teams = JsonSerializer.Deserialize<Team[]>(content, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            var tasks = new List<Task<IRestResponse>>();
+            foreach (var team in teams)
             {
-                stringToObj[i] = $"{{{stringToObj[i]}}}";
-                teamsDB.Teams.Add(JsonConvert.DeserializeObject<Team>(stringToObj[i]));
+                var coachRequest = new RestRequest($"/coaches?team={team.School}&year=2019", Method.GET);
+                tasks.Add(api.ExecuteAsync(coachRequest));
             }
-            teamsDB.SaveChanges();
+            var responses = await Task.WhenAll(tasks);
+            var coaches = responses.SelectMany(x => JsonSerializer.Deserialize<Coach[]>(x.Content,new JsonSerializerOptions() { PropertyNameCaseInsensitive = true}));
+
+            foreach (var coach in coaches)
+            {
+                teams.Single(x =>
+                x.School == coach.Seasons.First().School)
+                .Coaches.Add(coach);
+            }
+
+            var addTasks = teams.Select(x => context.AddAsync(x).AsTask());
+            await Task.WhenAll(addTasks);
+            await context.SaveChangesAsync();
+            #endregion
+
+            #region API TEAMS NW
+            //var api = new Website("https://api.collegefootballdata.com/");
+            //var sourceTeams = api.Download($"/teams/fbs?year=2019");
+            //sourceTeams = sourceTeams.Remove(0, 1);
+            //sourceTeams = sourceTeams.Remove(sourceTeams.Length - 1, 1);
+            //string[] teams = sourceTeams.Split('{', '}');
+            //var stringToObj = teams.Where(n => !(string.IsNullOrEmpty(n) || n == ",")).ToArray();
+            //using var context = new TeamsContext();
+            //var tasks = new List<Task<IRestResponse>>();
+            //for (int i = 0; i < stringToObj.Length; i++)
+            //{
+            //    stringToObj[i] = $"{{{stringToObj[i]}}}";
+            //    var bufor = JsonConvert.DeserializeObject<Team>(stringToObj[i]);
+            //    var dataCoaches = api.Download($"/coaches?team={bufor.School}&year=2019");
+            //    dataCoaches = dataCoaches.Remove(0, 1);
+            //    dataCoaches = dataCoaches.Remove(dataCoaches.Length - 1, 1);
+            //    Console.WriteLine(dataCoaches);
+            //    var bufor2 = JsonConvert.DeserializeObject<Coach>(dataCoaches);
+            //    //Console.WriteLine(bufor2.First_name,bufor2.Seasons);
+            //}
+            //context.SaveChanges();
+            #endregion
         }
     }
 }

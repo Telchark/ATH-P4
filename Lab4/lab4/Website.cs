@@ -16,11 +16,9 @@ namespace lab4
         public string Download(string path)
         {
             var request = new RestRequest(path);
-
             var response = _client.Execute(request);
             return response.Content;
         }
-
         public Task<IRestResponse> DownloadAsync(string path)
         {
             var request = new RestRequest(path);
