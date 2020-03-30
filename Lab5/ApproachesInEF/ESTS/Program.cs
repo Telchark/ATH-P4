@@ -15,9 +15,14 @@ namespace TSES
             context.SaveChanges();
 
             var tscontext = new TSContext();
-            tscontext.Computers.Add(new TSComputer() 
-            { Description = "Test Lap", CoolingType = "Air", Weight = 2, Price = 1500,
-                Server = new Server() { Bandwidth = 1000 } });
+            tscontext.Computers.Add(new TSComputer()
+            {
+                Description = "Test Lap",
+                CoolingType = "Air",
+                Weight = 2,
+                Price = 1500,
+                Server = new Server() { Bandwidth = 1000 }
+            });
             tscontext.SaveChanges();
         }
     }

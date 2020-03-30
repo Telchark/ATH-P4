@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablePer", "TablePer\TablePer.csproj", "{C56D3086-B8FC-428F-9A90-76A52EADFCD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESTS", "ESTS\ESTS.csproj", "{39CEF41F-BB23-456C-B36A-C91FA9844598}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C56D3086-B8FC-428F-9A90-76A52EADFCD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56D3086-B8FC-428F-9A90-76A52EADFCD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56D3086-B8FC-428F-9A90-76A52EADFCD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56D3086-B8FC-428F-9A90-76A52EADFCD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39CEF41F-BB23-456C-B36A-C91FA9844598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39CEF41F-BB23-456C-B36A-C91FA9844598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39CEF41F-BB23-456C-B36A-C91FA9844598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39CEF41F-BB23-456C-B36A-C91FA9844598}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FB41457-8D51-4588-8903-60F46678DD24}
+	EndGlobalSection
+EndGlobal

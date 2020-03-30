@@ -16,6 +16,6 @@ namespace Program
 
             modelBuilder.Entity<PC>().ToTable("Pecety");
             modelBuilder.Entity<Laptop>().ToTable("Laptopty");
-        }xxx
+        }
     }
 }
