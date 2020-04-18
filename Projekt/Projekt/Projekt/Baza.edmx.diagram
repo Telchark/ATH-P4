@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bbb2664a82cc4a889ce08ab372bbcbdc" Name="Diagram1">
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.Amortyzacja" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.Dokument" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.Kategoria" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.KST" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.MetodyAmortyzacji" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.Pracownik" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.Sezonowosc" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.SrodekTrwaly" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SrodkiTrwaleModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="SrodkiTrwaleModel.FK_Amortyzacja_MetodyAmortyzacji" ManuallyRouted="false" />
+        <AssociationConnector Association="SrodkiTrwaleModel.FK_Amortyzacja_Sezonowosc" ManuallyRouted="false" />
+        <AssociationConnector Association="SrodkiTrwaleModel.FK_Amortyzacja_SrodekTrwaly" ManuallyRouted="false" />
+        <AssociationConnector Association="SrodkiTrwaleModel.FK_SrodekTrwaly_Dokument" />
+        <AssociationConnector Association="SrodkiTrwaleModel.FK_SrodekTrwaly_Kategoria" />
+        <AssociationConnector Association="SrodkiTrwaleModel.FK_SrodekTrwaly_KST" />
+        <AssociationConnector Association="SrodkiTrwaleModel.FK_SrodekTrwaly_Pracownik" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

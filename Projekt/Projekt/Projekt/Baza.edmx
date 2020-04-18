@@ -1,0 +1,607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SrodkiTrwaleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Amortyzacja">
+          <Key>
+            <PropertyRef Name="NrInwentarzowy" />
+          </Key>
+          <Property Name="NrInwentarzowy" Type="int" Nullable="false" />
+          <Property Name="DataRozpAmortyzacji" Type="date" Nullable="false" />
+          <Property Name="WartoscPoczatkowa" Type="money" Nullable="false" />
+          <Property Name="StawkaAmortyzacji" Type="float" Nullable="false" />
+          <Property Name="WspolczynnikAmortyzacji" Type="float" Nullable="false" />
+          <Property Name="MetodaAmortyzacji" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="WartoscBiezaca" Type="money" />
+        </EntityType>
+        <EntityType Name="Dokument">
+          <Key>
+            <PropertyRef Name="NrDokumentu" />
+          </Key>
+          <Property Name="NrDokumentu" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Kwota" Type="money" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="NazwaKategorii" />
+          </Key>
+          <Property Name="NazwaKategorii" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="OpisKategorii" Type="nchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KST">
+          <Key>
+            <PropertyRef Name="Numer" />
+          </Key>
+          <Property Name="Numer" Type="int" Nullable="false" />
+          <Property Name="Grupa" Type="int" Nullable="false" />
+          <Property Name="Podgrupa" Type="int" Nullable="false" />
+          <Property Name="Rodzaj" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MetodyAmortyzacji">
+          <Key>
+            <PropertyRef Name="NazwaMetody" />
+          </Key>
+          <Property Name="NazwaMetody" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="OpisMetody" Type="nchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="IdPracownika" />
+          </Key>
+          <Property Name="IdPracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwisko" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imie" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataUr" Type="date" />
+          <Property Name="PESEL" Type="nchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sezonowosc">
+          <Key>
+            <PropertyRef Name="NrInwentarzowy" />
+          </Key>
+          <Property Name="NrInwentarzowy" Type="int" Nullable="false" />
+          <Property Name="Styczen" Type="bit" />
+          <Property Name="Luty" Type="bit" />
+          <Property Name="Marzec" Type="bit" />
+          <Property Name="Kwiecien" Type="bit" />
+          <Property Name="Maj" Type="bit" />
+          <Property Name="Czerwiec" Type="bit" />
+          <Property Name="Lipiec" Type="bit" />
+          <Property Name="Sierpien" Type="bit" />
+          <Property Name="Wrzesien" Type="bit" />
+          <Property Name="Pazdziernik" Type="bit" />
+          <Property Name="Listopad" Type="bit" />
+          <Property Name="Grudzien" Type="bit" />
+        </EntityType>
+        <EntityType Name="SrodekTrwaly">
+          <Key>
+            <PropertyRef Name="NrInwentarzowy" />
+          </Key>
+          <Property Name="NazwaSrodka" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NrInwentarzowy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KST" Type="int" />
+          <Property Name="OsosbaOdp" Type="int" />
+          <Property Name="MiejsceUzytkowania" Type="nvarchar" MaxLength="150" />
+          <Property Name="DataZakupu" Type="date" Nullable="false" />
+          <Property Name="DataLikwidacji" Type="date" />
+          <Property Name="Stan" Type="nchar" MaxLength="30" />
+          <Property Name="PrzyczynaZbycia" Type="nvarchar" MaxLength="255" />
+          <Property Name="Kategoria" Type="nchar" MaxLength="40" />
+          <Property Name="Dokument" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Amortyzacja_MetodyAmortyzacji">
+          <End Role="MetodyAmortyzacji" Type="Self.MetodyAmortyzacji" Multiplicity="1" />
+          <End Role="Amortyzacja" Type="Self.Amortyzacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodyAmortyzacji">
+              <PropertyRef Name="NazwaMetody" />
+            </Principal>
+            <Dependent Role="Amortyzacja">
+              <PropertyRef Name="MetodaAmortyzacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Amortyzacja_Sezonowosc">
+          <End Role="Sezonowosc" Type="Self.Sezonowosc" Multiplicity="1" />
+          <End Role="Amortyzacja" Type="Self.Amortyzacja" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sezonowosc">
+              <PropertyRef Name="NrInwentarzowy" />
+            </Principal>
+            <Dependent Role="Amortyzacja">
+              <PropertyRef Name="NrInwentarzowy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Amortyzacja_SrodekTrwaly">
+          <End Role="SrodekTrwaly" Type="Self.SrodekTrwaly" Multiplicity="1" />
+          <End Role="Amortyzacja" Type="Self.Amortyzacja" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SrodekTrwaly">
+              <PropertyRef Name="NrInwentarzowy" />
+            </Principal>
+            <Dependent Role="Amortyzacja">
+              <PropertyRef Name="NrInwentarzowy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SrodekTrwaly_Dokument">
+          <End Role="Dokument" Type="Self.Dokument" Multiplicity="0..1" />
+          <End Role="SrodekTrwaly" Type="Self.SrodekTrwaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dokument">
+              <PropertyRef Name="NrDokumentu" />
+            </Principal>
+            <Dependent Role="SrodekTrwaly">
+              <PropertyRef Name="Dokument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SrodekTrwaly_Kategoria">
+          <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="0..1" />
+          <End Role="SrodekTrwaly" Type="Self.SrodekTrwaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoria">
+              <PropertyRef Name="NazwaKategorii" />
+            </Principal>
+            <Dependent Role="SrodekTrwaly">
+              <PropertyRef Name="Kategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SrodekTrwaly_KST">
+          <End Role="KST" Type="Self.KST" Multiplicity="0..1" />
+          <End Role="SrodekTrwaly" Type="Self.SrodekTrwaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KST">
+              <PropertyRef Name="Numer" />
+            </Principal>
+            <Dependent Role="SrodekTrwaly">
+              <PropertyRef Name="KST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SrodekTrwaly_Pracownik">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="0..1" />
+          <End Role="SrodekTrwaly" Type="Self.SrodekTrwaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="SrodekTrwaly">
+              <PropertyRef Name="OsosbaOdp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SrodkiTrwaleModelStoreContainer">
+          <EntitySet Name="Amortyzacja" EntityType="Self.Amortyzacja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dokument" EntityType="Self.Dokument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KST" EntityType="Self.KST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetodyAmortyzacji" EntityType="Self.MetodyAmortyzacji" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sezonowosc" EntityType="Self.Sezonowosc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SrodekTrwaly" EntityType="Self.SrodekTrwaly" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Amortyzacja_MetodyAmortyzacji" Association="Self.FK_Amortyzacja_MetodyAmortyzacji">
+            <End Role="MetodyAmortyzacji" EntitySet="MetodyAmortyzacji" />
+            <End Role="Amortyzacja" EntitySet="Amortyzacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Amortyzacja_Sezonowosc" Association="Self.FK_Amortyzacja_Sezonowosc">
+            <End Role="Sezonowosc" EntitySet="Sezonowosc" />
+            <End Role="Amortyzacja" EntitySet="Amortyzacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Amortyzacja_SrodekTrwaly" Association="Self.FK_Amortyzacja_SrodekTrwaly">
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+            <End Role="Amortyzacja" EntitySet="Amortyzacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SrodekTrwaly_Dokument" Association="Self.FK_SrodekTrwaly_Dokument">
+            <End Role="Dokument" EntitySet="Dokument" />
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SrodekTrwaly_Kategoria" Association="Self.FK_SrodekTrwaly_Kategoria">
+            <End Role="Kategoria" EntitySet="Kategoria" />
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SrodekTrwaly_KST" Association="Self.FK_SrodekTrwaly_KST">
+            <End Role="KST" EntitySet="KST" />
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SrodekTrwaly_Pracownik" Association="Self.FK_SrodekTrwaly_Pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SrodkiTrwaleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Amortyzacja">
+          <Key>
+            <PropertyRef Name="NrInwentarzowy" />
+          </Key>
+          <Property Name="NrInwentarzowy" Type="Int32" Nullable="false" />
+          <Property Name="DataRozpAmortyzacji" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WartoscPoczatkowa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="StawkaAmortyzacji" Type="Double" Nullable="false" />
+          <Property Name="WspolczynnikAmortyzacji" Type="Double" Nullable="false" />
+          <Property Name="MetodaAmortyzacji" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="WartoscBiezaca" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="MetodyAmortyzacji" Relationship="Self.FK_Amortyzacja_MetodyAmortyzacji" FromRole="Amortyzacja" ToRole="MetodyAmortyzacji" />
+          <NavigationProperty Name="Sezonowosc" Relationship="Self.FK_Amortyzacja_Sezonowosc" FromRole="Amortyzacja" ToRole="Sezonowosc" />
+          <NavigationProperty Name="SrodekTrwaly" Relationship="Self.FK_Amortyzacja_SrodekTrwaly" FromRole="Amortyzacja" ToRole="SrodekTrwaly" />
+        </EntityType>
+        <EntityType Name="Dokument">
+          <Key>
+            <PropertyRef Name="NrDokumentu" />
+          </Key>
+          <Property Name="NrDokumentu" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Kwota" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SrodekTrwaly" Relationship="SrodkiTrwaleModel.FK_SrodekTrwaly_Dokument" FromRole="Dokument" ToRole="SrodekTrwaly" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="NazwaKategorii" />
+          </Key>
+          <Property Name="NazwaKategorii" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="OpisKategorii" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SrodekTrwaly" Relationship="SrodkiTrwaleModel.FK_SrodekTrwaly_Kategoria" FromRole="Kategoria" ToRole="SrodekTrwaly" />
+        </EntityType>
+        <EntityType Name="KST">
+          <Key>
+            <PropertyRef Name="Numer" />
+          </Key>
+          <Property Name="Numer" Type="Int32" Nullable="false" />
+          <Property Name="Grupa" Type="Int32" Nullable="false" />
+          <Property Name="Podgrupa" Type="Int32" Nullable="false" />
+          <Property Name="Rodzaj" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="SrodekTrwaly" Relationship="SrodkiTrwaleModel.FK_SrodekTrwaly_KST" FromRole="KST" ToRole="SrodekTrwaly" />
+        </EntityType>
+        <EntityType Name="MetodyAmortyzacji">
+          <Key>
+            <PropertyRef Name="NazwaMetody" />
+          </Key>
+          <Property Name="NazwaMetody" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="OpisMetody" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Amortyzacja" Relationship="Self.FK_Amortyzacja_MetodyAmortyzacji" FromRole="MetodyAmortyzacji" ToRole="Amortyzacja" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="IdPracownika" />
+          </Key>
+          <Property Name="IdPracownika" Type="Int32" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DataUr" Type="DateTime" Precision="0" />
+          <Property Name="PESEL" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SrodekTrwaly" Relationship="SrodkiTrwaleModel.FK_SrodekTrwaly_Pracownik" FromRole="Pracownik" ToRole="SrodekTrwaly" />
+        </EntityType>
+        <EntityType Name="Sezonowosc">
+          <Key>
+            <PropertyRef Name="NrInwentarzowy" />
+          </Key>
+          <Property Name="NrInwentarzowy" Type="Int32" Nullable="false" />
+          <Property Name="Styczen" Type="Boolean" />
+          <Property Name="Luty" Type="Boolean" />
+          <Property Name="Marzec" Type="Boolean" />
+          <Property Name="Kwiecien" Type="Boolean" />
+          <Property Name="Maj" Type="Boolean" />
+          <Property Name="Czerwiec" Type="Boolean" />
+          <Property Name="Lipiec" Type="Boolean" />
+          <Property Name="Sierpien" Type="Boolean" />
+          <Property Name="Wrzesien" Type="Boolean" />
+          <Property Name="Pazdziernik" Type="Boolean" />
+          <Property Name="Listopad" Type="Boolean" />
+          <Property Name="Grudzien" Type="Boolean" />
+          <NavigationProperty Name="Amortyzacja" Relationship="Self.FK_Amortyzacja_Sezonowosc" FromRole="Sezonowosc" ToRole="Amortyzacja" />
+        </EntityType>
+        <EntityType Name="SrodekTrwaly">
+          <Key>
+            <PropertyRef Name="NrInwentarzowy" />
+          </Key>
+          <Property Name="NazwaSrodka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NrInwentarzowy" Type="Int32" Nullable="false" />
+          <Property Name="KST" Type="Int32" />
+          <Property Name="OsosbaOdp" Type="Int32" />
+          <Property Name="MiejsceUzytkowania" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DataZakupu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataLikwidacji" Type="DateTime" Precision="0" />
+          <Property Name="Stan" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="PrzyczynaZbycia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Kategoria" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Amortyzacja" Relationship="Self.FK_Amortyzacja_SrodekTrwaly" FromRole="SrodekTrwaly" ToRole="Amortyzacja" />
+          <Property Name="Dokument" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Dokument1" Relationship="SrodkiTrwaleModel.FK_SrodekTrwaly_Dokument" FromRole="SrodekTrwaly" ToRole="Dokument" />
+          <NavigationProperty Name="Kategoria1" Relationship="SrodkiTrwaleModel.FK_SrodekTrwaly_Kategoria" FromRole="SrodekTrwaly" ToRole="Kategoria" />
+          <NavigationProperty Name="KST1" Relationship="SrodkiTrwaleModel.FK_SrodekTrwaly_KST" FromRole="SrodekTrwaly" ToRole="KST" />
+          <NavigationProperty Name="Pracownik" Relationship="SrodkiTrwaleModel.FK_SrodekTrwaly_Pracownik" FromRole="SrodekTrwaly" ToRole="Pracownik" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Amortyzacja_MetodyAmortyzacji">
+          <End Role="MetodyAmortyzacji" Type="Self.MetodyAmortyzacji" Multiplicity="1" />
+          <End Role="Amortyzacja" Type="Self.Amortyzacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodyAmortyzacji">
+              <PropertyRef Name="NazwaMetody" />
+            </Principal>
+            <Dependent Role="Amortyzacja">
+              <PropertyRef Name="MetodaAmortyzacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Amortyzacja_Sezonowosc">
+          <End Role="Sezonowosc" Type="Self.Sezonowosc" Multiplicity="1" />
+          <End Role="Amortyzacja" Type="Self.Amortyzacja" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sezonowosc">
+              <PropertyRef Name="NrInwentarzowy" />
+            </Principal>
+            <Dependent Role="Amortyzacja">
+              <PropertyRef Name="NrInwentarzowy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Amortyzacja_SrodekTrwaly">
+          <End Role="SrodekTrwaly" Type="Self.SrodekTrwaly" Multiplicity="1" />
+          <End Role="Amortyzacja" Type="Self.Amortyzacja" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SrodekTrwaly">
+              <PropertyRef Name="NrInwentarzowy" />
+            </Principal>
+            <Dependent Role="Amortyzacja">
+              <PropertyRef Name="NrInwentarzowy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SrodkiTrwaleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Amortyzacja" EntityType="Self.Amortyzacja" />
+          <EntitySet Name="Dokument" EntityType="Self.Dokument" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" />
+          <EntitySet Name="KST" EntityType="Self.KST" />
+          <EntitySet Name="MetodyAmortyzacji" EntityType="Self.MetodyAmortyzacji" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" />
+          <EntitySet Name="Sezonowosc" EntityType="Self.Sezonowosc" />
+          <EntitySet Name="SrodekTrwaly" EntityType="Self.SrodekTrwaly" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Amortyzacja_MetodyAmortyzacji" Association="Self.FK_Amortyzacja_MetodyAmortyzacji">
+            <End Role="MetodyAmortyzacji" EntitySet="MetodyAmortyzacji" />
+            <End Role="Amortyzacja" EntitySet="Amortyzacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Amortyzacja_Sezonowosc" Association="Self.FK_Amortyzacja_Sezonowosc">
+            <End Role="Sezonowosc" EntitySet="Sezonowosc" />
+            <End Role="Amortyzacja" EntitySet="Amortyzacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Amortyzacja_SrodekTrwaly" Association="Self.FK_Amortyzacja_SrodekTrwaly">
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+            <End Role="Amortyzacja" EntitySet="Amortyzacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SrodekTrwaly_Dokument" Association="SrodkiTrwaleModel.FK_SrodekTrwaly_Dokument">
+            <End Role="Dokument" EntitySet="Dokument" />
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SrodekTrwaly_Kategoria" Association="SrodkiTrwaleModel.FK_SrodekTrwaly_Kategoria">
+            <End Role="Kategoria" EntitySet="Kategoria" />
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SrodekTrwaly_KST" Association="SrodkiTrwaleModel.FK_SrodekTrwaly_KST">
+            <End Role="KST" EntitySet="KST" />
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SrodekTrwaly_Pracownik" Association="SrodkiTrwaleModel.FK_SrodekTrwaly_Pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="SrodekTrwaly" EntitySet="SrodekTrwaly" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_SrodekTrwaly_Dokument">
+          <End Type="SrodkiTrwaleModel.Dokument" Role="Dokument" Multiplicity="0..1" />
+          <End Type="SrodkiTrwaleModel.SrodekTrwaly" Role="SrodekTrwaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dokument">
+              <PropertyRef Name="NrDokumentu" />
+            </Principal>
+            <Dependent Role="SrodekTrwaly">
+              <PropertyRef Name="Dokument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SrodekTrwaly_Kategoria">
+          <End Type="SrodkiTrwaleModel.Kategoria" Role="Kategoria" Multiplicity="0..1" />
+          <End Type="SrodkiTrwaleModel.SrodekTrwaly" Role="SrodekTrwaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoria">
+              <PropertyRef Name="NazwaKategorii" />
+            </Principal>
+            <Dependent Role="SrodekTrwaly">
+              <PropertyRef Name="Kategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SrodekTrwaly_KST">
+          <End Type="SrodkiTrwaleModel.KST" Role="KST" Multiplicity="0..1" />
+          <End Type="SrodkiTrwaleModel.SrodekTrwaly" Role="SrodekTrwaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KST">
+              <PropertyRef Name="Numer" />
+            </Principal>
+            <Dependent Role="SrodekTrwaly">
+              <PropertyRef Name="KST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SrodekTrwaly_Pracownik">
+          <End Type="SrodkiTrwaleModel.Pracownik" Role="Pracownik" Multiplicity="0..1" />
+          <End Type="SrodkiTrwaleModel.SrodekTrwaly" Role="SrodekTrwaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="SrodekTrwaly">
+              <PropertyRef Name="OsosbaOdp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SrodkiTrwaleModelStoreContainer" CdmEntityContainer="SrodkiTrwaleEntities">
+          <EntitySetMapping Name="Amortyzacja">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.Amortyzacja">
+              <MappingFragment StoreEntitySet="Amortyzacja">
+                <ScalarProperty Name="NrInwentarzowy" ColumnName="NrInwentarzowy" />
+                <ScalarProperty Name="DataRozpAmortyzacji" ColumnName="DataRozpAmortyzacji" />
+                <ScalarProperty Name="WartoscPoczatkowa" ColumnName="WartoscPoczatkowa" />
+                <ScalarProperty Name="StawkaAmortyzacji" ColumnName="StawkaAmortyzacji" />
+                <ScalarProperty Name="WspolczynnikAmortyzacji" ColumnName="WspolczynnikAmortyzacji" />
+                <ScalarProperty Name="MetodaAmortyzacji" ColumnName="MetodaAmortyzacji" />
+                <ScalarProperty Name="WartoscBiezaca" ColumnName="WartoscBiezaca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dokument">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.Dokument">
+              <MappingFragment StoreEntitySet="Dokument">
+                <ScalarProperty Name="NrDokumentu" ColumnName="NrDokumentu" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Kwota" ColumnName="Kwota" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoria">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.Kategoria">
+              <MappingFragment StoreEntitySet="Kategoria">
+                <ScalarProperty Name="NazwaKategorii" ColumnName="NazwaKategorii" />
+                <ScalarProperty Name="OpisKategorii" ColumnName="OpisKategorii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KST">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.KST">
+              <MappingFragment StoreEntitySet="KST">
+                <ScalarProperty Name="Numer" ColumnName="Numer" />
+                <ScalarProperty Name="Grupa" ColumnName="Grupa" />
+                <ScalarProperty Name="Podgrupa" ColumnName="Podgrupa" />
+                <ScalarProperty Name="Rodzaj" ColumnName="Rodzaj" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MetodyAmortyzacji">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.MetodyAmortyzacji">
+              <MappingFragment StoreEntitySet="MetodyAmortyzacji">
+                <ScalarProperty Name="NazwaMetody" ColumnName="NazwaMetody" />
+                <ScalarProperty Name="OpisMetody" ColumnName="OpisMetody" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pracownik">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.Pracownik">
+              <MappingFragment StoreEntitySet="Pracownik">
+                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="DataUr" ColumnName="DataUr" />
+                <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sezonowosc">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.Sezonowosc">
+              <MappingFragment StoreEntitySet="Sezonowosc">
+                <ScalarProperty Name="NrInwentarzowy" ColumnName="NrInwentarzowy" />
+                <ScalarProperty Name="Styczen" ColumnName="Styczen" />
+                <ScalarProperty Name="Luty" ColumnName="Luty" />
+                <ScalarProperty Name="Marzec" ColumnName="Marzec" />
+                <ScalarProperty Name="Kwiecien" ColumnName="Kwiecien" />
+                <ScalarProperty Name="Maj" ColumnName="Maj" />
+                <ScalarProperty Name="Czerwiec" ColumnName="Czerwiec" />
+                <ScalarProperty Name="Lipiec" ColumnName="Lipiec" />
+                <ScalarProperty Name="Sierpien" ColumnName="Sierpien" />
+                <ScalarProperty Name="Wrzesien" ColumnName="Wrzesien" />
+                <ScalarProperty Name="Pazdziernik" ColumnName="Pazdziernik" />
+                <ScalarProperty Name="Listopad" ColumnName="Listopad" />
+                <ScalarProperty Name="Grudzien" ColumnName="Grudzien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SrodekTrwaly">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.SrodekTrwaly">
+              <MappingFragment StoreEntitySet="SrodekTrwaly">
+                <ScalarProperty Name="Dokument" ColumnName="Dokument" />
+                <ScalarProperty Name="NazwaSrodka" ColumnName="NazwaSrodka" />
+                <ScalarProperty Name="NrInwentarzowy" ColumnName="NrInwentarzowy" />
+                <ScalarProperty Name="KST" ColumnName="KST" />
+                <ScalarProperty Name="OsosbaOdp" ColumnName="OsosbaOdp" />
+                <ScalarProperty Name="MiejsceUzytkowania" ColumnName="MiejsceUzytkowania" />
+                <ScalarProperty Name="DataZakupu" ColumnName="DataZakupu" />
+                <ScalarProperty Name="DataLikwidacji" ColumnName="DataLikwidacji" />
+                <ScalarProperty Name="Stan" ColumnName="Stan" />
+                <ScalarProperty Name="PrzyczynaZbycia" ColumnName="PrzyczynaZbycia" />
+                <ScalarProperty Name="Kategoria" ColumnName="Kategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SrodkiTrwaleModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
