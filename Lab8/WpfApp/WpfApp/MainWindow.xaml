@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Canvas x:Name="Canvas" Background="White" Grid.Column="0" Grid.RowSpan="3">
+            <Rectangle x:Name="BA" Fill="Red" Height="10" Canvas.Bottom="0" Stroke="Black" Canvas.Left="40" Width="100"/>
+            <Rectangle x:Name="BB" Fill="Blue" Height="10" Canvas.Bottom="0" Stroke="Black" Canvas.Left="180" Width="100"/>
+            <Rectangle x:Name="BC" Fill="Gold" Height="10" Canvas.Bottom="0" Stroke="Black" Canvas.Left="320" Width="100"/>
+            <Rectangle x:Name="BD" Fill="PaleVioletRed" Height="10" Canvas.Bottom="0" Stroke="Black" Canvas.Left="460" Width="100"/>
+        </Canvas>
+        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" Text="Zadaj pytanie i sprawdź wrapowanie:" Width="190" Height="140" />
+        <WrapPanel Grid.Row="1" Grid.Column="1">
+            <Button  Content="A" Width="70" Height="45" Margin="20 20 10 0" Click="BTN_Click"/>
+            <Button  Content="B" Width="70" Height="45" Margin="10 20 10 0" Click="BTN_Click"/>
+            <Button  Content="C" Width="70" Height="45" Margin="20 20 10 0" Click="BTN_Click"/>
+            <Button  Content="D" Width="70" Height="45" Margin="10 20 10 0" Click="BTN_Click"/>
+        </WrapPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lblAllAnswersCount" Content="Ilość głosów:"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lblBestAnswer" Content="Ilośc najlepszej odpowiedzi:"></Label>
+            </StackPanel>
+        </StackPanel>
+ 
+    </Grid>
+</Window>
