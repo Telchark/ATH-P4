@@ -1,0 +1,10 @@
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\bin\Debug\Zombie.exe.config
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\bin\Debug\Zombie.exe
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\bin\Debug\Zombie.pdb
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\obj\Debug\Zombie.csprojAssemblyReference.cache
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\obj\Debug\Zombie.formZombie.resources
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\obj\Debug\Zombie.Properties.Resources.resources
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\obj\Debug\Zombie.csproj.GenerateResource.cache
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\obj\Debug\Zombie.csproj.CoreCompileInputs.cache
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\obj\Debug\Zombie.exe
+C:\Users\Endriu\Desktop\CovidSimulator\Zombie\Zombie\obj\Debug\Zombie.pdb
