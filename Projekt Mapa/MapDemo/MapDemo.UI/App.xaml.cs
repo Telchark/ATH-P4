@@ -1,14 +1,5 @@
 ﻿using Autofac;
-using MapDemo.UI.Data;
 using MapDemo.UI.Startup;
-using MapDemo.UI.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MapDemo.UI

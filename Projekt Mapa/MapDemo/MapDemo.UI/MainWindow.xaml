@@ -4,35 +4,55 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MapDemo.UI"
+        xmlns:view="clr-namespace:MapDemo.UI.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontSize="20">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding Weapons}"
-                  SelectedItem="{Binding SelectedWeapon,Mode=TwoWay}"
-                  DisplayMemberPath="Name"/>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Label Content="Nazwa" Margin="10 10 10 0"/>
-            <TextBox Grid.Row="1" Text="{Binding SelectedWeapon.Name,
-            Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-            <Label Grid.Row="2" Content="Typ" Margin="10 0 10 0"/>
-            <TextBox Grid.Row="3" Text="{Binding SelectedWeapon.Type,
-            Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-            <Label Grid.Row="4" Content="Obrażenia" Margin="10 10 10 0"/>
-            <TextBox Grid.Row="5" Text="{Binding SelectedWeapon.Damage,
-            Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-        </Grid>
+        <TabControl>
+            <TabItem Header="Bronie">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <view:WeaponLookupView DataContext="{Binding WeaponLookupViewModel}"/>
+                    <view:WeaponDetailView Grid.Column="1" DataContext="{Binding WeaponDetailViewModel}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Opancerzenie">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <view:ArmorLookupView DataContext="{Binding ArmorLookupViewModel}"/>
+                    <view:ArmorDetailView Grid.Column="1" DataContext="{Binding ArmorDetailViewModel}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Surowce">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <view:ResourceLookupView DataContext="{Binding ResourceLookupViewModel}"/>
+                    <view:ResourceDetailView Grid.Column="1" DataContext="{Binding ResourceDetailViewModel}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Zamki">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <view:CastleLookupView DataContext="{Binding CastleLookupViewModel}"/>
+                    <view:CastleDetailView Grid.Column="1" DataContext="{Binding CastleDetailViewModel}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 </Window>

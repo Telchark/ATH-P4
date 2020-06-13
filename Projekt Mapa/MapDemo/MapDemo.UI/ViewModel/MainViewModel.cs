@@ -1,42 +1,44 @@
-﻿using MapDemo.Model;
-using MapDemo.UI.Data;
-using System.Collections.ObjectModel;
-using System.Windows.Navigation;
+﻿using System.Threading.Tasks;
 
 namespace MapDemo.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private IWeaponDataService _weaponDataService;
-        private Weapon _selectedWeapon;
-
-        public MainViewModel(IWeaponDataService weaponDataService)
+        public MainViewModel(IWeaponLookupViewModel weaponLookupViewModel, IWeaponDetailViewModel weaponDetailViewModel,
+            IArmorLookupViewModel armorLookupViewModel, IArmorDetailViewModel armorDetailViewModel,
+            IResourceLookupViewModel resourceLookupViewModel, IResourceDetailViewModel resourceDetailViewModel,
+            ICastleLookupViewModel castleLookupViewModel, ICastleDetailViewModel castleDetailViewModel)
         {
-            Weapons = new ObservableCollection<Weapon>();
-            _weaponDataService = weaponDataService;
-        }
+            WeaponLookupViewModel = weaponLookupViewModel;
+            WeaponDetailViewModel = weaponDetailViewModel;
 
-        public void Load()
+            ArmorLookupViewModel = armorLookupViewModel;
+            ArmorDetailViewModel = armorDetailViewModel;
+
+            ResourceLookupViewModel = resourceLookupViewModel;
+            ResourceDetailViewModel = resourceDetailViewModel;
+
+            CastleLookupViewModel = castleLookupViewModel;
+            CastleDetailViewModel = castleDetailViewModel;
+        }
+        public async Task LoadAsync()
         {
-            var weapons = _weaponDataService.GetAll();
-            Weapons.Clear();
-            foreach(var weapon in weapons)
-            {
-                Weapons.Add(weapon);
-            }
+            await WeaponLookupViewModel.LoadAsync();
+            await ArmorLookupViewModel.LoadAsync();
+            await ResourceLookupViewModel.LoadAsync();
+            await CastleLookupViewModel.LoadAsync();
         }
+        public IWeaponLookupViewModel WeaponLookupViewModel { get; }
+        public IWeaponDetailViewModel WeaponDetailViewModel { get; }
 
-        public ObservableCollection<Weapon> Weapons { get; set; }
+        public IArmorLookupViewModel ArmorLookupViewModel { get; }
+        public IArmorDetailViewModel ArmorDetailViewModel { get; }
 
+        public IResourceLookupViewModel ResourceLookupViewModel { get; }
+        public IResourceDetailViewModel ResourceDetailViewModel { get; }
 
-
-        public Weapon SelectedWeapon
-        {
-            get { return _selectedWeapon; }
-            set { _selectedWeapon = value;
-                OnPropertyChanged(); }
-        }
-
+        public ICastleLookupViewModel CastleLookupViewModel { get; }
+        public ICastleDetailViewModel CastleDetailViewModel { get; }
 
     }
 }

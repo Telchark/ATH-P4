@@ -50,16 +50,24 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,9 +86,72 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\DataServices\ArmorDataService.cs" />
+    <Compile Include="Data\DataServices\CastleDataService.cs" />
+    <Compile Include="Data\Interfaces\IArmorDataService.cs" />
+    <Compile Include="Data\Interfaces\ICastleDataService.cs" />
+    <Compile Include="Data\Interfaces\ILookupArmorDataService.cs" />
+    <Compile Include="Data\Interfaces\ILookupCastleDataService.cs" />
+    <Compile Include="Data\Interfaces\ILookupResourceDataService.cs" />
+    <Compile Include="Data\Interfaces\ILookupWeaponDataService.cs" />
+    <Compile Include="Data\Interfaces\IResourceDataService.cs" />
+    <Compile Include="Data\DataServices\LookupCastleDataService.cs" />
+    <Compile Include="Data\DataServices\LookupResourceDataService.cs" />
+    <Compile Include="Data\DataServices\LookupArmorDataService.cs" />
+    <Compile Include="Data\DataServices\LookupWeaponDataService.cs" />
+    <Compile Include="Data\DataServices\ResourceDataService.cs" />
+    <Compile Include="Event\AfterArmorSavedEvent.cs" />
+    <Compile Include="Event\AfterCastleSavedEvent.cs" />
+    <Compile Include="Event\AfterResourceSavedEvent.cs" />
+    <Compile Include="Event\AfterWeaponSavedEvent.cs" />
+    <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="ViewModel\Interfaces\ICastleDetailViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\ICastleLookupViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IResourceDetailViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\NavigationViewModels\NavigationArmorViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\NavigationViewModels\NavigationCastleViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\NavigationViewModels\NavigationResourceViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\NavigationViewModels\NavigationWeaponViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\LookupViewModels\ResourceLookupViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IArmorDetailViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IArmorLookupViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IResourceLookupViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IWeaponDetailViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IWeaponLookupViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ViewModels\DetailViewModels\ArmorDetailViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\DetailViewModels\ResourceDetailViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\DetailViewModels\CastleDetailViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\DetailViewModels\WeaponDetailViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\LookupViewModels\ArmorLookupViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\LookupViewModels\CastleLookupViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels\LookupViewModels\WeaponLookupViewModel.cs" />
+    <Compile Include="View\ArmorDetailView.xaml.cs">
+      <DependentUpon>ArmorDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ArmorLookupView.xaml.cs">
+      <DependentUpon>ArmorLookupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CastleDetailView.xaml.cs">
+      <DependentUpon>CastleDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CastleLookupView.xaml.cs">
+      <DependentUpon>CastleLookupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResourceDetailView.xaml.cs">
+      <DependentUpon>ResourceDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResourceLookupView.xaml.cs">
+      <DependentUpon>ResourceLookupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WeaponDetailView.xaml.cs">
+      <DependentUpon>WeaponDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WeaponLookupView.xaml.cs">
+      <DependentUpon>WeaponLookupView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,12 +160,44 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\IWeaponDataService.cs" />
-    <Compile Include="Data\WeaponDataService.cs" />
+    <Compile Include="Data\Interfaces\IWeaponDataService.cs" />
+    <Compile Include="Data\DataServices\WeaponDataService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ArmorDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ArmorLookupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CastleDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CastleLookupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ResourceDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ResourceLookupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WeaponDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WeaponLookupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -133,6 +236,7 @@
       <Name>MapDemo.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
