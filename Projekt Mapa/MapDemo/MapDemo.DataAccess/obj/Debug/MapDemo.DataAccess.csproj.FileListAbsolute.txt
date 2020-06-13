@@ -1,0 +1,16 @@
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\MapDemo.DataAccess.dll
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\MapDemo.DataAccess.pdb
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\MapDemo.Model.dll
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\MapDemo.Model.pdb
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\obj\Debug\MapDemo.DataAccess.csprojAssemblyReference.cache
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\obj\Debug\MapDemo.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\obj\Debug\MapDemo.DataAccess.csproj.CopyComplete
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\obj\Debug\MapDemo.DataAccess.dll
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\obj\Debug\MapDemo.DataAccess.pdb
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\MapDemo.DataAccess.dll.config
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\obj\Debug\MapDemo.DataAccess.Migrations.InitialDatabase.resources
+C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.DataAccess\obj\Debug\MapDemo.DataAccess.csproj.GenerateResource.cache
