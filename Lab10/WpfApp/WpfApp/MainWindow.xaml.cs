@@ -20,9 +20,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private FileContent fileContent = new FileContent();
@@ -33,22 +30,13 @@ namespace WpfApp
             TB.DataContext = fileContent;
             fileWatcher.NotifyFilter = NotifyFilters.LastWrite;
             fileWatcher.Changed += watcherReaction;
+            new UserWindow().Show();
         }
-        /// <summary>
-        /// Paczacz paczy i co sie dzieje jak zobaczy
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         public void watcherReaction(object sender, FileSystemEventArgs e)
         {
             var txt = File.ReadAllText(fileContent.Path);
             fileContent.Content = txt;
         }
-        /// <summary>
-        /// Wczytanie pliku
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnChooseFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog()
@@ -66,9 +54,6 @@ namespace WpfApp
                 fileContent.Content = txt;
             }
         }
-        /// <summary>
-        /// Zawartość pliku z kontrolą czy nie zapisujemy tego samego
-        /// </summary>
         public class FileContent : INotifyPropertyChanged
         {
             public string Path { get; set; }
