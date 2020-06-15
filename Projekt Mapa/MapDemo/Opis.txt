@@ -1,0 +1,51 @@
+DataAcces:
+	baza jest (nawet z migracją) 
+	navigation property manyToMany jest (jeszcze nieużywany) ale jest
+Model:
+    zywkład defnicja typów
+UI:
+	Data:
+	Itemki mają swoje DataService i LookupDataService według schematu [Item]DataService Lookup[Item]DataService
+	Z tego Func to sie musze dokształcić bo tak nie za bardzo (ale działa to zostawiłem)
+	DataService jest od wyświetlania i zapisywania pojedyńczego przedmiotu
+	GetByIdAsync
+	SaveAsync
+	LookupDataService pobiera wszystkie ale tylko nazwy i id do panelu nawigacyjnego
+	Get[Item]LookupAsync
+	Event:
+	tu tworze eventy do Prisma 
+	Startup:
+	Bootstrapper - magia DI wpisuje wszystko i jakoś działa 
+	ViewModel:
+	ViewModelBase - unikatowe OnPropertyChanged callermember super rzecz jak dziedzicze
+	tą klaske to tylko wpisuje w secie OnPropertyChanged()
+	MainViewModel - inicjalizacja boża viewmodelów 
+	ViewModels
+	po wielogodzinnych bojach jest 
+	[Item]DetailViewModel - czeka aż klikniemy coś w jego panelu nawigacyjnym wtedy pokazuje ma komende do zapisywania czy można będzie robione razem z walidacją
+	[Item]LookupViewModel - ładuje sobie normalnie wszystko i subsktybuje event jak coś sie zapisze w detail żeby to zaktualizować na liście
+	Navigation[Item]ViewModel - lookup[item] ale z notify property change na nazwie żeby się aktualizowało po zapisie #stacOverflow
+	View:
+	przedmioty i miejsca mają w tabie swój formularz gdzie jest lista przedmiotów po kliknięciu na
+	przedmiot obok wyświetlają się jego dane można je edytować i po kliknięciu zapisz
+	lista przedmiotów (po lewej) powinna się zaktualizować (na gorąco)
+
+!TODO:
+-modele itemów z (dataannotations)
+-baza z many to many CodeFirst z migrowaniem
+-wyświetlanie danych itemu
+-panel nawigacyjny do wszystkich itemków (zrobione bez on clicka) nie wiem czy to lepiej czy gorzej
+-możliwość edycji wyświetlanego itemu
+-przerobienie tego mniej wiecej do MVVM (view to xaml, model to czytanie z bazy etc., modelview to gotowe zestawy do których bindujemy)
+-zrobić DI
+-
+!TODO||TODO:
+-walidacja i dostosowanie aktywności przyciusku zapisywania (poprzez notifypropertychange i data annotations)
+TODO:
+-usuwanie
+-dodawanie rekordów
+-dodawanie przedmiotów do zamku
+-wyszukiwanie itemów po kategoriach po nazwach ogólnie bardzo dużo tu powinno być
+-MAPA!!! tragedia na razie całkowicie wyrzucona z projektu
+
+dotychczasowy czas pracy ok.52h (oglądanie tutoriali towrznie sampli i pisanie własnego kodu na podstawie innych (mam nadzieje że to będzie się zmieniać))

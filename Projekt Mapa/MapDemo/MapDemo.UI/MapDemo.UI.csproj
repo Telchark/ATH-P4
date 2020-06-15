@@ -152,6 +152,9 @@
     <Compile Include="View\WeaponLookupView.xaml.cs">
       <DependentUpon>WeaponLookupView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wrapper\ModelWrapper.cs" />
+    <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
+    <Compile Include="Wrapper\WeaponWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

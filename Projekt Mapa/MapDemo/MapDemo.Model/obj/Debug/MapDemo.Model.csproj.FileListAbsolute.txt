@@ -1,6 +1,0 @@
-C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.Model\bin\Debug\MapDemo.Model.dll
-C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.Model\bin\Debug\MapDemo.Model.pdb
-C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.Model\obj\Debug\MapDemo.Model.csprojAssemblyReference.cache
-C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.Model\obj\Debug\MapDemo.Model.csproj.CoreCompileInputs.cache
-C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.Model\obj\Debug\MapDemo.Model.dll
-C:\Users\Endriu\Desktop\Projekt Mapa\MapDemo\MapDemo.Model\obj\Debug\MapDemo.Model.pdb

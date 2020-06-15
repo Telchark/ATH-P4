@@ -9,8 +9,10 @@ namespace MapDemo.UI
     /// </summary>
     public partial class App : Application
     {
+        //metoda wygenerowna przez startup
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            //magia DI
             var bootstrapper = new Bootstrapper();
             var container = bootstrapper.Bootstrap();
 

@@ -6,6 +6,7 @@ namespace MapDemo.DataAccess
 {
     public class MapDemoDbContext : DbContext
     {
+        //zwykły kontekst
         public MapDemoDbContext():base("MapDemoDb")
         {
 

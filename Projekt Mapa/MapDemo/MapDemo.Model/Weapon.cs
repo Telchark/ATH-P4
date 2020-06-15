@@ -2,6 +2,8 @@
 
 namespace MapDemo.Model
 {
+    //Broń 
+    //TODO wrzucenie typów do bazy
     public class Weapon : Item
     {
         public enum WeaponType

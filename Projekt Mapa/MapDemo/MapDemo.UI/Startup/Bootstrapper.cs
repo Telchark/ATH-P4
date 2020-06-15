@@ -12,9 +12,10 @@ namespace MapDemo.UI.Startup
         {
             var builder = new ContainerBuilder();
 
+            //Prism.Core do publikowania i subskrybcji eventów trudne ale przydatne //TL
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
-            builder.RegisterType<MapDemoDbContext>().AsSelf();
+            builder.RegisterType<MapDemoDbContext>();//as self jest domyślne i opcjonalne
 
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
@@ -34,6 +35,7 @@ namespace MapDemo.UI.Startup
             builder.RegisterType<LookupResourceDataService>().As<ILookupResourceDataService>();
             builder.RegisterType<LookupCastleDataService>().As<ILookupCastleDataService>();
 
+            //AsImplementedInterfaces bierze WSZYSTKIE interfejsy jakch potrzbuje dana klasa czyli jeśli jest jeden to to samo co wyżej
             builder.RegisterType<WeaponDataService>().AsImplementedInterfaces();
             builder.RegisterType<ArmorDataService>().AsImplementedInterfaces();
             builder.RegisterType<ResourceDataService>().AsImplementedInterfaces();

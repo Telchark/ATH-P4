@@ -1,6 +1,7 @@
 ﻿using MapDemo.Model;
 using MapDemo.UI.Data;
 using MapDemo.UI.Event;
+using MapDemo.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace MapDemo.UI.ViewModel
 
         private async void OnSaveExecute()
         {
-            await _dataService.SaveAsync(Weapon);
+            await _dataService.SaveAsync(Weapon.Model);
             _eventAggregator.GetEvent<AfterWeaponSavedEvent>().Publish
                 (new AfterWeaponSavedEventArgs
                 {
@@ -35,7 +36,7 @@ namespace MapDemo.UI.ViewModel
 
         private bool OnSaveCanExecute()
         {
-            //TODO
+            //TODO walidacja here 
             return true;
         }
 
@@ -46,11 +47,12 @@ namespace MapDemo.UI.ViewModel
 
         public async Task LoadAsync(int weaponId)
         {
-            Weapon = await _dataService.GetByIdAsync(weaponId);
+            var weapon = await _dataService.GetByIdAsync(weaponId);
+            Weapon = new WeaponWrapper(weapon);
         }
-        private Weapon _weapon;
+        private WeaponWrapper _weapon;
 
-        public Weapon Weapon
+        public WeaponWrapper Weapon
         {
             get { return _weapon; }
             private set { _weapon = value; OnPropertyChanged(); }
