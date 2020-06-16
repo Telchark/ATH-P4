@@ -1,9 +1,12 @@
 ﻿using MapDemo.Model;
 using MapDemo.UI.Data;
 using MapDemo.UI.Event;
+using MapDemo.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
+using System;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MapDemo.UI.ViewModel
@@ -17,14 +20,24 @@ namespace MapDemo.UI.ViewModel
         {
             _eventAggregator = eventAggregator;
             _dataService = dataService;
-            _eventAggregator.GetEvent<OpenDetailViewEvent>()
-            .Subscribe(OnOpenArmorDetailView);
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            DeleteCommand = new DelegateCommand(OnDeleteExecute);
+        }
+
+        private async void OnDeleteExecute()
+        {
+            var msgBoxResult = MessageBox.Show($"Do you want to delete {Armor.Name} from the list?", "Delete question", MessageBoxButton.YesNo);
+            if (msgBoxResult == MessageBoxResult.Yes)
+            {
+                _dataService.Remove(Armor.Model);
+                await _dataService.SaveAsync();
+                _eventAggregator.GetEvent<AfterArmorDeletedEvent>().Publish(Armor.ArmorId);
+            }
         }
 
         private async void OnSaveExecute()
         {
-            await _dataService.SaveAsync(Armor);
+            await _dataService.SaveAsync();
             _eventAggregator.GetEvent<AfterArmorSavedEvent>().Publish
                 (new AfterArmorSavedEventArgs
                 {
@@ -35,27 +48,61 @@ namespace MapDemo.UI.ViewModel
 
         private bool OnSaveCanExecute()
         {
-            //TODO
-            return true;
+            return Armor != null && !Armor.HasErrors && HasChanges;
         }
 
-        private async void OnOpenArmorDetailView(int armorId)
+        private bool _hasChanges;
+
+        public bool HasChanges
         {
-            await LoadAsync(armorId);
+            get { return _hasChanges; }
+            set
+            {
+                if (_hasChanges != value)
+                {
+                    _hasChanges = value;
+                    OnPropertyChanged();
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            }
         }
 
-        public async Task LoadAsync(int armorId)
+
+        public async Task LoadAsync(int? armorId)
         {
-            Armor = await _dataService.GetByIdAsync(armorId);
-        }
-        private Armor _armor;
+            var armor = armorId.HasValue ? await _dataService.GetByIdAsync(armorId.Value) : CreateArmor();
 
-        public Armor Armor
+            Armor = new ArmorWrapper(armor);
+            Armor.PropertyChanged += (s, e) =>
+            {
+                if (!HasChanges)
+                {
+                    HasChanges = _dataService.HasChanges();
+                }
+                if (e.PropertyName == nameof(Armor.HasErrors))
+                {
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            };
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+
+        private Armor CreateArmor()
+        {
+            var armor = new Armor();
+            _dataService.Add(armor);
+            return armor;
+        }
+
+        private ArmorWrapper _armor;
+
+        public ArmorWrapper Armor
         {
             get { return _armor; }
             private set { _armor = value; OnPropertyChanged(); }
         }
 
         public ICommand SaveCommand{ get; set; }
+        public ICommand DeleteCommand{ get; set; }
     }
 }

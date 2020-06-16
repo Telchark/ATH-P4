@@ -9,6 +9,6 @@ namespace MapDemo.Model
         [Required]
         public string Name { get; set; }
         [Required]
-        public float Price { get; set; }
+        public int Price { get; set; }
     }
 }

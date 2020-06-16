@@ -8,28 +8,35 @@ namespace MapDemo.UI.Data
 {
     public class ResourceDataService : IResourceDataService
     {
-        private Func<MapDemoDbContext> _contextCreator;
+        MapDemoDbContext _context;
 
-        public ResourceDataService(Func<MapDemoDbContext> contextCreator)
+        public ResourceDataService(MapDemoDbContext context)
         {
-            _contextCreator = contextCreator;
+            _context = context;
         }
+
+        public void Add(Resource resource)
+        {
+            _context.Resources.Add(resource);
+        }
+
         public async Task<Resource> GetByIdAsync(int resourceId)
         {
-            using (var ctx = _contextCreator())
-            {
-                return await ctx.Resources.AsNoTracking().SingleAsync(r => r.ResourceId == resourceId);
-            }
+                return await _context.Resources.SingleAsync(r => r.ResourceId == resourceId);
+        }
+        public bool HasChanges()
+        {
+            return _context.ChangeTracker.HasChanges();
         }
 
-        public async Task SaveAsync(Resource resource)
+        public void Remove(Resource model)
         {
-            using (var ctx = _contextCreator())
-            {
-                ctx.Resources.Attach(resource);
-                ctx.Entry(resource).State = EntityState.Modified;
-                await ctx.SaveChangesAsync();
-            }
+            _context.Resources.Remove(model);
+        }
+
+        public async Task SaveAsync()
+        {
+                await _context.SaveChangesAsync();
         }
     }
 }

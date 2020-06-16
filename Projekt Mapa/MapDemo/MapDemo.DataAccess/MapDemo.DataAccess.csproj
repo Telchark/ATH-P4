@@ -56,6 +56,10 @@
     <Compile Include="Migrations\202006121836253_InitialDatabase.designer.cs">
       <DependentUpon>202006121836253_InitialDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006160954447_changeResourcePriceFromFloatToInt.cs" />
+    <Compile Include="Migrations\202006160954447_changeResourcePriceFromFloatToInt.designer.cs">
+      <DependentUpon>202006160954447_changeResourcePriceFromFloatToInt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006121836253_InitialDatabase.resx">
       <DependentUpon>202006121836253_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006160954447_changeResourcePriceFromFloatToInt.resx">
+      <DependentUpon>202006160954447_changeResourcePriceFromFloatToInt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

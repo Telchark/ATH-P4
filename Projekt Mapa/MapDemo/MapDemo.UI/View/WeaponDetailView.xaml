@@ -3,60 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MapDemo.UI.View"
+             xmlns:local="clr-namespace:MapDemo.UI"
              mc:Ignorable="d" 
+             x:Name="root"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            
+
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            
+
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            
+
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            
+
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            
+
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            
+
             <RowDefinition/>
-            
+
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="Nazwa" Margin="10 10 10 0"/>
+
+        <Label Content="Name" Margin="10 10 10 0"/>
         <TextBox Grid.Row="1" Text="{Binding Weapon.Name,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
         
-        <Label Grid.Row="2" Content="Typ" Margin="10 0 10 0"/>
+        <Label Grid.Row="2" Content="Type" Margin="10 0 10 0"/>
         <TextBox Grid.Row="3" Text="{Binding Weapon.Type,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
         
-        <Label Grid.Row="4" Content="Obrażenia" Margin="10 0 10 0"/>
+        <Label Grid.Row="4" Content="Damage" Margin="10 0 10 0"/>
         <TextBox Grid.Row="5" Text="{Binding Weapon.Damage,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
         
-        <Label Grid.Row="6" Content="Waga" Margin="10 0 10 0"/>
+        <Label Grid.Row="6" Content="Weight" Margin="10 0 10 0"/>
         <TextBox Grid.Row="7" Text="{Binding Weapon.Weight,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
         
-        <Label Grid.Row="8" Content="Długość" Margin="10 0 10 0"/>
+        <Label Grid.Row="8" Content="Length" Margin="10 0 10 0"/>
         <TextBox Grid.Row="9" Text="{Binding Weapon.Length,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
         
-        <Label Grid.Row="10" Content="Cena" Margin="10 10 10 0"/>
+        <Label Grid.Row="10" Content="Price" Margin="10 10 10 0"/>
         <TextBox Grid.Row="11" Text="{Binding Weapon.Price,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
 
-        <StackPanel Grid.Row="12" Orientation="Horizontal">
-            <Button Content="Zapisz" Width="125" Margin="10"
-                    Command="{Binding SaveCommand}"/>
+        <StackPanel Grid.Row="13" Orientation="Horizontal">
+            <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>
+            <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

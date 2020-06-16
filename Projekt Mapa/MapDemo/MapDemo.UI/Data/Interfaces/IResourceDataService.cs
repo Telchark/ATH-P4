@@ -6,6 +6,9 @@ namespace MapDemo.UI.Data
     public interface IResourceDataService
     {
         Task<Resource> GetByIdAsync(int resourceId);
-        Task SaveAsync(Resource resource);
+        Task SaveAsync();
+        bool HasChanges();
+        void Add(Resource resource);
+        void Remove(Resource model);
     }
 }

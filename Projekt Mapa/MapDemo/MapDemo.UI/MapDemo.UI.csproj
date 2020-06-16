@@ -100,11 +100,18 @@
     <Compile Include="Data\DataServices\LookupArmorDataService.cs" />
     <Compile Include="Data\DataServices\LookupWeaponDataService.cs" />
     <Compile Include="Data\DataServices\ResourceDataService.cs" />
+    <Compile Include="Event\AfterArmorDeletedEvent.cs" />
     <Compile Include="Event\AfterArmorSavedEvent.cs" />
+    <Compile Include="Event\AfterCastleDeletedEvent.cs" />
     <Compile Include="Event\AfterCastleSavedEvent.cs" />
+    <Compile Include="Event\AfterResourceDeletedEvent.cs" />
     <Compile Include="Event\AfterResourceSavedEvent.cs" />
+    <Compile Include="Event\AfterWeaponDeletedEvent.cs" />
     <Compile Include="Event\AfterWeaponSavedEvent.cs" />
-    <Compile Include="Event\OpenDetailViewEvent.cs" />
+    <Compile Include="Event\OpenArmorDetailViewEvent.cs" />
+    <Compile Include="Event\OpenCastleDetailViewEvent.cs" />
+    <Compile Include="Event\OpenResourceDetailViewEvent.cs" />
+    <Compile Include="Event\OpenWeaponDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\Interfaces\ICastleDetailViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\ICastleLookupViewModel.cs" />
@@ -152,8 +159,11 @@
     <Compile Include="View\WeaponLookupView.xaml.cs">
       <DependentUpon>WeaponLookupView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wrapper\ArmorWrapper.cs" />
+    <Compile Include="Wrapper\CastleWrapper.cs" />
     <Compile Include="Wrapper\ModelWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
+    <Compile Include="Wrapper\ResourceWrapper.cs" />
     <Compile Include="Wrapper\WeaponWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

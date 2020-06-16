@@ -19,5 +19,22 @@ namespace MapDemo.UI
         {
             await _viewModel.LoadAsync();
         }
+
+        private void WeaponMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Tab.SelectedIndex = 0;
+        }
+        private void ArmorMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Tab.SelectedIndex = 1;
+        }
+        private void ResourceMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Tab.SelectedIndex = 2;
+        }
+        private void CastleMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Tab.SelectedIndex = 3;
+        }
     }
 }

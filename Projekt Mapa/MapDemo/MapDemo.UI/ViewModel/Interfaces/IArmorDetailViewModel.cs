@@ -4,6 +4,6 @@ namespace MapDemo.UI.ViewModel
 {
     public interface IArmorDetailViewModel
     {
-        Task LoadAsync(int armorId);
+        Task LoadAsync(int? armorId);
     }
 }

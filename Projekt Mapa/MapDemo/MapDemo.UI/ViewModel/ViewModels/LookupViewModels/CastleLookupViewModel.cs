@@ -17,12 +17,27 @@ namespace MapDemo.UI.ViewModel
             Castles = new ObservableCollection<NavigationCastleViewModel>();
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<AfterCastleSavedEvent>().Subscribe(AfterCastleSaved);
+            _eventAggregator.GetEvent<AfterCastleDeletedEvent>().Subscribe(AfterCastleDeleted);
+        }
+
+        private void AfterCastleDeleted(int castleId)
+        {
+            var castle = Castles.SingleOrDefault(c => c.CastleId == castleId);
+            if (castle != null)
+            {
+                Castles.Remove(castle);
+            }
         }
 
         private void AfterCastleSaved(AfterCastleSavedEventArgs obj)
         {
-            var lookUpItem = Castles.Single(c => c.CastleId == obj.CastleId);
-            lookUpItem.CastleName = obj.CastleName;
+            var lookUpItem = Castles.SingleOrDefault(w => w.CastleId == obj.CastleId);
+            if (lookUpItem == null)
+            {
+                Castles.Add(new NavigationCastleViewModel(obj.CastleId, obj.CastleName));
+            }
+            else
+                lookUpItem.CastleName = obj.CastleName;
         }
 
         public async Task LoadAsync()
@@ -31,7 +46,7 @@ namespace MapDemo.UI.ViewModel
             Castles.Clear();
             foreach (var item in lookup)
             {
-                Castles.Add(new NavigationCastleViewModel(item.CastleId,item.CastleName));
+                Castles.Add(new NavigationCastleViewModel(item.CastleId, item.CastleName));
             }
         }
         public ObservableCollection<NavigationCastleViewModel> Castles { get; set; }
@@ -46,7 +61,7 @@ namespace MapDemo.UI.ViewModel
                 OnPropertyChanged();
                 if (_selectedCastle != null)
                 {
-                    _eventAggregator.GetEvent<OpenDetailViewEvent>()
+                    _eventAggregator.GetEvent<OpenCastleDetailViewEvent>()
                         .Publish(_selectedCastle.CastleId);
                 }
             }

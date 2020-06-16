@@ -6,10 +6,22 @@
         xmlns:local="clr-namespace:MapDemo.UI"
         xmlns:view="clr-namespace:MapDemo.UI.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="720" Width="1280">
     <Grid>
-        <TabControl>
-            <TabItem Header="Bronie">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Add">
+                <MenuItem Click="WeaponMenuItem_Click" Header="Weapon" Command="{Binding CreateNewWeaponCommand}"/>
+                <MenuItem Click="ArmorMenuItem_Click" Header="Armor" Command="{Binding CreateNewArmorCommand}"/>
+                <MenuItem Click="ResourceMenuItem_Click" Header="Resource" Command="{Binding CreateNewResourceCommand}"/>
+                <MenuItem Click="CastleMenuItem_Click" Header="Castle" Command="{Binding CreateNewCastleCommand}"/>
+            </MenuItem>
+        </Menu>
+        <TabControl x:Name="Tab" Grid.Row="1">
+            <TabItem Header="Weapons">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
@@ -20,7 +32,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Opancerzenie">
+            <TabItem Header="Armors">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
@@ -31,7 +43,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Surowce">
+            <TabItem Header="Resources">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
@@ -42,7 +54,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Zamki">
+            <TabItem Header="Castles">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
@@ -53,6 +65,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
     </Grid>
 </Window>

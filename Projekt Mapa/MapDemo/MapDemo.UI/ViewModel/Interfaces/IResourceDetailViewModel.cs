@@ -4,6 +4,6 @@ namespace MapDemo.UI.ViewModel
 {
     public interface IResourceDetailViewModel
     {
-        Task LoadAsync(int resourceId);
+        Task LoadAsync(int? resourceId);
     }
 }

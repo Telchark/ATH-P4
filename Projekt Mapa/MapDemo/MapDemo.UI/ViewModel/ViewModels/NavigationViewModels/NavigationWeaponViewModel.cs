@@ -22,3 +22,4 @@
         }
     }
 }
+//zwykły weapon lookup tylko z OPCh na name żeby nie ingerować w model bazowy

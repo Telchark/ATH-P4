@@ -1,20 +1,15 @@
 ﻿using MapDemo.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static MapDemo.Model.Weapon;
+using static MapDemo.Model.Armor;
 
 namespace MapDemo.UI.Wrapper
 {
-    public class WeaponWrapper : ModelWrapper<Weapon>
+    public class ArmorWrapper : ModelWrapper<Armor>
     {
-        public WeaponWrapper(Weapon model) : base(model)
+        public ArmorWrapper(Armor model) : base(model)
         {
         }
 
-        public int WeaponId { get { return Model.WeaponId; } }
+        public int ArmorId { get { return Model.ArmorId; } }
 
         public string Name
         {
@@ -22,9 +17,9 @@ namespace MapDemo.UI.Wrapper
             set { SetValue(value); }
         }
 
-        public WeaponType Type
+        public ArmorType Type
         {
-            get { return GetValue<WeaponType>(); }
+            get { return GetValue<ArmorType>(); }
             set { SetValue(value); }
         }
 
@@ -34,13 +29,7 @@ namespace MapDemo.UI.Wrapper
             set { SetValue(value); }
         }
 
-        public int Length
-        {
-            get { return GetValue<int>(); }
-            set { SetValue(value); }
-        }
-
-        public int Damage
+        public int ArmorValue
         {
             get { return GetValue<int>(); }
             set { SetValue(value); }
@@ -53,4 +42,3 @@ namespace MapDemo.UI.Wrapper
         }
     }
 }
-//model z błędami dla Weapon

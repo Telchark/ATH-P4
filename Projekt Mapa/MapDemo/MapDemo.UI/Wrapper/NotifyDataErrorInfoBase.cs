@@ -11,8 +11,7 @@ namespace MapDemo.UI.Wrapper
 {
     public class NotifyDataErrorInfoBase : ViewModelBase, INotifyDataErrorInfo
     {
-        private Dictionary<string, List<string>> _errorsByPropertyName
-         = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
 
         public bool HasErrors => _errorsByPropertyName.Any();
 
@@ -24,14 +23,13 @@ namespace MapDemo.UI.Wrapper
               ? _errorsByPropertyName[propertyName]
               : null;
         }
-
         protected virtual void OnErrorsChanged(string propertyName)
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
             base.OnPropertyChanged(nameof(HasErrors));
         }
 
-        protected void AddError(string propertyName, string error)
+        protected void AddError(string propertyName, string error)//dodawanie errorów sprawdzamy czy istnieje już lista jeśli nie robimy nową
         {
             if (!_errorsByPropertyName.ContainsKey(propertyName))
             {
@@ -52,5 +50,6 @@ namespace MapDemo.UI.Wrapper
                 OnErrorsChanged(propertyName);
             }
         }
+
     }
 }

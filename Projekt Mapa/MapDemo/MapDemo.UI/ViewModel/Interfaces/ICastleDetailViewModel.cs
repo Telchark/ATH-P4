@@ -4,6 +4,6 @@ namespace MapDemo.UI.ViewModel
 {
     public interface ICastleDetailViewModel
     {
-        Task LoadAsync(int castleId);
+        Task LoadAsync(int? castleId);
     }
 }

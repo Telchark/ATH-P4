@@ -15,13 +15,13 @@
 
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="Nazwa" Margin="10 10 10 0"/>
+        <Label Content="Name" Margin="10 10 10 0"/>
         <TextBox Grid.Row="1" Text="{Binding Castle.Name,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
 
         <StackPanel Grid.Row="12" Orientation="Horizontal">
-            <Button Content="Zapisz" Width="125" Margin="10"
-                    Command="{Binding SaveCommand}"/>
+            <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>
+            <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using MapDemo.UI.Data;
 using MapDemo.UI.Event;
 using Prism.Events;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,11 +18,27 @@ namespace MapDemo.UI.ViewModel
             Resources = new ObservableCollection<NavigationResourceViewModel>();
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<AfterResourceSavedEvent>().Subscribe(AfterResourceSaved);
+            _eventAggregator.GetEvent<AfterResourceDeletedEvent>().Subscribe(AfterResourceDeleted);
         }
+
+        private void AfterResourceDeleted(int resourceId)
+        {
+            var resource = Resources.SingleOrDefault(r => r.ResourceId == resourceId);
+            if(resource != null)
+            {
+                Resources.Remove(resource);
+            }
+        }
+
         private void AfterResourceSaved(AfterResourceSavedEventArgs obj)
         {
-            var lookUpItem = Resources.Single(r => r.ResourceId == obj.ResourceId);
-            lookUpItem.ResourceName = obj.ResourceName;
+            var lookUpItem = Resources.SingleOrDefault(w => w.ResourceId == obj.ResourceId);
+            if (lookUpItem == null)
+            {
+                Resources.Add(new NavigationResourceViewModel(obj.ResourceId, obj.ResourceName));
+            }
+            else
+                lookUpItem.ResourceName = obj.ResourceName;
         }
         public async Task LoadAsync()
         {
@@ -45,7 +62,7 @@ namespace MapDemo.UI.ViewModel
                 OnPropertyChanged();
                 if (_selectedResource != null)
                 {
-                    _eventAggregator.GetEvent<OpenDetailViewEvent>()
+                    _eventAggregator.GetEvent<OpenResourceDetailViewEvent>()
                         .Publish(_selectedResource.ResourceId);
                 }
             }

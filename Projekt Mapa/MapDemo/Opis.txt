@@ -2,34 +2,33 @@ DataAcces:
 	baza jest (nawet z migracją) 
 	navigation property manyToMany jest (jeszcze nieużywany) ale jest
 Model:
-    zywkład defnicja typów
+    defnicja typów
 UI:
 	Data:
-	Itemki mają swoje DataService i LookupDataService według schematu [Item]DataService Lookup[Item]DataService
-	Z tego Func to sie musze dokształcić bo tak nie za bardzo (ale działa to zostawiłem)
+	Itemy mają swoje DataService i LookupDataService według schematu [Item]DataService Lookup[Item]DataService
 	DataService jest od wyświetlania i zapisywania pojedyńczego przedmiotu
 	GetByIdAsync
 	SaveAsync
 	LookupDataService pobiera wszystkie ale tylko nazwy i id do panelu nawigacyjnego
 	Get[Item]LookupAsync
 	Event:
-	tu tworze eventy do Prisma 
+	eventy do Prisma
 	Startup:
 	Bootstrapper - magia DI wpisuje wszystko i jakoś działa 
 	ViewModel:
-	ViewModelBase - unikatowe OnPropertyChanged callermember super rzecz jak dziedzicze
-	tą klaske to tylko wpisuje w secie OnPropertyChanged()
-	MainViewModel - inicjalizacja boża viewmodelów 
+	ViewModelBase - unikatowe OnPropertyChanged callermember super rzecz 
+	MainViewModel - inicjalizacja viewmodelów dodawanie 
 	ViewModels
 	po wielogodzinnych bojach jest 
 	[Item]DetailViewModel - czeka aż klikniemy coś w jego panelu nawigacyjnym wtedy pokazuje ma komende do zapisywania czy można będzie robione razem z walidacją
 	[Item]LookupViewModel - ładuje sobie normalnie wszystko i subsktybuje event jak coś sie zapisze w detail żeby to zaktualizować na liście
-	Navigation[Item]ViewModel - lookup[item] ale z notify property change na nazwie żeby się aktualizowało po zapisie #stacOverflow
+	Navigation[Item]ViewModel - lookup[item] ale z notify property change na nazwie żeby się aktualizowało po zapisie (żeby nie zmieniać oryginalnego modelu)
 	View:
 	przedmioty i miejsca mają w tabie swój formularz gdzie jest lista przedmiotów po kliknięciu na
 	przedmiot obok wyświetlają się jego dane można je edytować i po kliknięciu zapisz
 	lista przedmiotów (po lewej) powinna się zaktualizować (na gorąco)
-
+	Wrapper:
+	//TODO desc
 !TODO:
 -modele itemów z (dataannotations)
 -baza z many to many CodeFirst z migrowaniem
@@ -37,15 +36,35 @@ UI:
 -panel nawigacyjny do wszystkich itemków (zrobione bez on clicka) nie wiem czy to lepiej czy gorzej
 -możliwość edycji wyświetlanego itemu
 -przerobienie tego mniej wiecej do MVVM (view to xaml, model to czytanie z bazy etc., modelview to gotowe zestawy do których bindujemy)
--zrobić DI
--
-!TODO||TODO:
--walidacja i dostosowanie aktywności przyciusku zapisywania (poprzez notifypropertychange i data annotations)
-TODO:
--usuwanie
+-DI
+-README pierwszej konfiguracji bazy
 -dodawanie rekordów
+-nie można wybrać nowo dodanego rekordu(naprawione dodałem indywidualny event dla każdego typu)
+-dodawać adhoc itemy do panelu nawigacyjnego 
+-usuwanie rekordów 
+-walidacja wybranego rekordu i dostosowanie aktywności przyciusku zapisywania (poprzez notifypropertychange i data annotations)
+TODO:
+-defaultowo detail ma się nie wyświetlać
+-znikanie Detail po usunięciu rekordu 
+-komunikat jak zmieniamy DetailView o niezapisanych danych
+-przenieść dodawanie z MainViewModel do DetailViewModel żeby nie prznosić MainViewModel do konteksu custom kontrolki (patologia z onclickami w MainWindow)
+-zmienić pole z typem na combobox
+-dodać walidację gdy wypełniamy nowy item
+-opisy walidacji
+-blokowanie przycisku zapisu gdy detail wróci do pierwotnego stanu (jest zablokowany na początku ale wystarczy coś kliknąć i już działa jak nie ma errorów)
+-dodawanie customowych błędów
 -dodawanie przedmiotów do zamku
--wyszukiwanie itemów po kategoriach po nazwach ogólnie bardzo dużo tu powinno być
--MAPA!!! tragedia na razie całkowicie wyrzucona z projektu
+-wyszukiwanie itemów po kategoriach/nazwach 
+-pukładać wszystko w plikach
+-jak będzie lista itemów w zamku to będzie można w nie kliknąc (może jakiś przycisk wróć)
+-MAPA chyba zastąpię ją przyciskami (narazie)
+-refactor refactor refactor
+-risorsy żeby ładnie wyglądało 
+-przeniesienie projektu do avaloni albo czegoś podobnego
+-unit testing 
+-wybór języka 
 
-dotychczasowy czas pracy ok.52h (oglądanie tutoriali towrznie sampli i pisanie własnego kodu na podstawie innych (mam nadzieje że to będzie się zmieniać))
+dotychczasowy czas pracy ok.63h (łącznie z szukaniem rozwiązań błędówi oglądaniem i czytaniem tutoriali)
+
+
+The bigger a problem may be, the greater the satisfaction one experiences after they achieve the solution.
