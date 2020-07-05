@@ -36,7 +36,7 @@
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
 
         <Label Grid.Row="4" Content="Weight" Margin="10 0 10 0"/>
-        <TextBox Grid.Row="5" Text="{Binding Armor.Weight,
+        <TextBox Grid.Row="5" Text="{Binding Armor.Weight,TargetNullValue=null,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
 
         <Label Grid.Row="6" Content="ArmorValue" Margin="10 0 10 0"/>

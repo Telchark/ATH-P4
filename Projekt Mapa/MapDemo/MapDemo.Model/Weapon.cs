@@ -19,12 +19,16 @@ namespace MapDemo.Model
         [Required]
         public WeaponType Type { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Value must be bigger than 0.")]
         public double Weight { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Value must be bigger than 0.")]
         public int Length { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Value must be bigger than 0.")]
         public int Damage { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Value must be bigger than 0.")]
         public int Price { get; set; }
     }
 }

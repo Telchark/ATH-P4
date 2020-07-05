@@ -33,10 +33,5 @@ namespace MapDemo.UI.Wrapper
             }
         }
 
-        protected virtual IEnumerable<string> ValidateProperty(string propertyName)
-        {
-            return null;
-        }
-
     }
 }

@@ -9,6 +9,7 @@ namespace MapDemo.Model
         [Required]
         public string Name { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Value must be bigger than 0.")]
         public int Price { get; set; }
     }
 }

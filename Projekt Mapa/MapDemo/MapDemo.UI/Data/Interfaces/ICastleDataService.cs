@@ -1,4 +1,5 @@
 ﻿using MapDemo.Model;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MapDemo.UI.Data
@@ -10,5 +11,6 @@ namespace MapDemo.UI.Data
         bool HasChanges();
         void Add(Castle castle);
         void Remove(Castle model);
+        Task<List<Weapon>> GetAllWeaponsAsync();
     }
 }

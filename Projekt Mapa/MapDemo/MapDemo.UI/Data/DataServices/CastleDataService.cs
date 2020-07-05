@@ -1,5 +1,6 @@
 ﻿using MapDemo.DataAccess;
 using MapDemo.Model;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
@@ -37,6 +38,12 @@ namespace MapDemo.UI.Data
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Weapon>> GetAllWeaponsAsync()
+        {
+            return await _context.Set<Weapon>()
+                .ToListAsync();
         }
     }
 }

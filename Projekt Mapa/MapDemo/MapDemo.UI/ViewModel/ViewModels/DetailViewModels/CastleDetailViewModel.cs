@@ -5,9 +5,13 @@ using MapDemo.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity.Core.Common.CommandTrees;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace MapDemo.UI.ViewModel
@@ -16,14 +20,22 @@ namespace MapDemo.UI.ViewModel
     {
         private IEventAggregator _eventAggregator;
         private ICastleDataService _dataService;
+        private Weapon _selectedAvailableWeapon;
+        private Weapon _selectedAddedWeapon;
+        private List<Weapon> _allWeapons;
 
         public CastleDetailViewModel(ICastleDataService dataService, IEventAggregator eventAggregator)
         {
+
             _dataService = dataService;
             _eventAggregator = eventAggregator;
 
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
             DeleteCommand = new DelegateCommand(OnDeleteExecute);
+            AddedWeapons = new ObservableCollection<Weapon>();
+            AvailableWeapons = new ObservableCollection<Weapon>();
+            AddWeaponCommand = new DelegateCommand(OnAddWeaponExecute, OnAddWeaponCanExecute);
+            RemoveWeaponCommand = new DelegateCommand(OnRemoveWeaponExecute, OnRemoveWeaponCanExecute);
         }
 
         private async void OnDeleteExecute()
@@ -87,6 +99,8 @@ namespace MapDemo.UI.ViewModel
                 }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            _allWeapons = await _dataService.GetAllWeaponsAsync();
+            CreatePicklist();
         }
 
         private Castle CreateCastle()
@@ -106,5 +120,83 @@ namespace MapDemo.UI.ViewModel
 
         public ICommand SaveCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand AddWeaponCommand { get; }
+        public ICommand RemoveWeaponCommand { get; }
+
+        public ObservableCollection<Weapon> AddedWeapons { get; }
+
+        public ObservableCollection<Weapon> AvailableWeapons { get; }
+
+        public Weapon SelectedAvailableWeapon
+        {
+            get { return _selectedAvailableWeapon; }
+            set
+            {
+                _selectedAvailableWeapon = value;
+                OnPropertyChanged();
+                ((DelegateCommand)AddWeaponCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+        public Weapon SelectedAddedWeapon
+        {
+            get { return _selectedAddedWeapon; }
+            set
+            {
+                _selectedAddedWeapon = value;
+                OnPropertyChanged();
+                ((DelegateCommand)RemoveWeaponCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+        private void OnRemoveWeaponExecute()
+        {
+            var weaponToRemove = SelectedAddedWeapon;
+
+            Castle.Model.Weapons.Remove(weaponToRemove);
+            AddedWeapons.Remove(weaponToRemove);
+            AvailableWeapons.Add(weaponToRemove);
+            HasChanges = _dataService.HasChanges();
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+
+        private bool OnRemoveWeaponCanExecute()
+        {
+            return SelectedAddedWeapon != null;
+        }
+
+        private bool OnAddWeaponCanExecute()
+        {
+            return SelectedAvailableWeapon != null;
+        }
+
+        private void OnAddWeaponExecute()
+        {
+            var weaponToAdd = SelectedAvailableWeapon;
+
+            Castle.Model.Weapons.Add(weaponToAdd);
+            AddedWeapons.Add(weaponToAdd);
+            AvailableWeapons.Remove(weaponToAdd);
+            HasChanges = _dataService.HasChanges();
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+
+        private void CreatePicklist()
+        {
+            var castleWeaponId = Castle.Model.Weapons.Select(w => w.WeaponId).ToList();
+            var addedWeapons = _allWeapons.Where(w => castleWeaponId.Contains(w.WeaponId));
+            var availableWeapons = _allWeapons.Except(addedWeapons);
+            AddedWeapons.Clear();
+            AvailableWeapons.Clear();
+            foreach (var addedWeapon in addedWeapons)
+            {
+                AddedWeapons.Add(addedWeapon);
+            }
+            foreach (var availableWeapon in availableWeapons)
+            {
+                AvailableWeapons.Add(availableWeapon);
+            }
+        }
+
     }
 }
