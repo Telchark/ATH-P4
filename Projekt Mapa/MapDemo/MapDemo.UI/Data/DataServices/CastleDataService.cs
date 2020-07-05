@@ -45,5 +45,17 @@ namespace MapDemo.UI.Data
             return await _context.Set<Weapon>()
                 .ToListAsync();
         }
+
+        public async Task<List<Armor>> GetAllArmorsAsync()
+        {
+            return await _context.Set<Armor>()
+                .ToListAsync();
+        }
+
+        public async Task<List<Resource>> GetAllResourcesAsync()
+        {
+            return await _context.Set<Resource>()
+                .ToListAsync();
+        }
     }
 }

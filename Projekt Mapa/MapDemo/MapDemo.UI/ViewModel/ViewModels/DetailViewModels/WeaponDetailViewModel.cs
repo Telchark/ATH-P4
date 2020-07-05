@@ -69,7 +69,6 @@ namespace MapDemo.UI.ViewModel
         public async Task LoadAsync(int? weaponId)
         {
             var weapon = weaponId.HasValue ? await _dataService.GetByIdAsync(weaponId.Value) : CreateWeapon();
-
             Weapon = new WeaponWrapper(weapon);
             Weapon.PropertyChanged += (s, e) =>
             {
@@ -83,6 +82,10 @@ namespace MapDemo.UI.ViewModel
                 }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            //if (Weapon.Model.WeaponId == 0)
+            //{
+            //    Weapon.Model.Name = "";
+            //}
         }
 
         private Weapon CreateWeapon()

@@ -12,5 +12,7 @@ namespace MapDemo.UI.Data
         void Add(Castle castle);
         void Remove(Castle model);
         Task<List<Weapon>> GetAllWeaponsAsync();
+        Task<List<Armor>> GetAllArmorsAsync();
+        Task<List<Resource>> GetAllResourcesAsync();
     }
 }
