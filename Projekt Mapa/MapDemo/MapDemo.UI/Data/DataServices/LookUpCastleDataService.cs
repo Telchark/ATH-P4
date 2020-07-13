@@ -25,7 +25,9 @@ namespace MapDemo.UI.Data
                     .Select(c => new LookupCastle
                     {
                         CastleId = c.CastleId,
-                        CastleName = c.Name
+                        CastleName = c.Name,
+                        X = c.X,
+                        Y = c.Y
                     }).ToListAsync();
             }
         }

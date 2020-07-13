@@ -34,7 +34,7 @@ namespace MapDemo.UI.ViewModel
             var lookUpItem = Castles.SingleOrDefault(w => w.CastleId == obj.CastleId);
             if (lookUpItem == null)
             {
-                Castles.Add(new NavigationCastleViewModel(obj.CastleId, obj.CastleName));
+                Castles.Add(new NavigationCastleViewModel(obj.CastleId, obj.CastleName,obj.X,obj.Y,_eventAggregator));
             }
             else
                 lookUpItem.CastleName = obj.CastleName;
@@ -46,25 +46,9 @@ namespace MapDemo.UI.ViewModel
             Castles.Clear();
             foreach (var item in lookup)
             {
-                Castles.Add(new NavigationCastleViewModel(item.CastleId, item.CastleName));
+                Castles.Add(new NavigationCastleViewModel(item.CastleId, item.CastleName,item.X,item.Y, _eventAggregator));
             }
         }
         public ObservableCollection<NavigationCastleViewModel> Castles { get; set; }
-        private NavigationCastleViewModel _selectedCastle;
-
-        public NavigationCastleViewModel SelectedCastle
-        {
-            get { return _selectedCastle; }
-            set
-            {
-                _selectedCastle = value;
-                OnPropertyChanged();
-                if (_selectedCastle != null)
-                {
-                    _eventAggregator.GetEvent<OpenCastleDetailViewEvent>()
-                        .Publish(_selectedCastle.CastleId);
-                }
-            }
-        }
     }
 }

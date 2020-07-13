@@ -76,7 +76,9 @@ namespace MapDemo.UI.ViewModel
                 (new AfterCastleSavedEventArgs
                 {
                     CastleId = Castle.CastleId,
-                    CastleName = Castle.Name
+                    CastleName = Castle.Name,
+                    X = Castle.X,
+                    Y = Castle.Y
                 });
         }
 

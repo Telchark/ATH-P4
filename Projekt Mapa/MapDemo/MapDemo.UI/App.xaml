@@ -11,11 +11,16 @@
                         <StackPanel>
                             <AdornedElementPlaceholder x:Name="placeholder"/>
                             <TextBlock FontSize="12" Foreground="Red" Text="{Binding ElementName=placeholder,
-                Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
+                               Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
                         </StackPanel>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>

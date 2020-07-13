@@ -35,7 +35,7 @@
         <Label Content="Name" Margin="10 10 10 0"/>
         <TextBox Grid.Row="1" Text="{Binding Weapon.Name,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-        
+
         <Label Grid.Row="2" Content="Type" Margin="10 0 10 0"/>
         <TextBox Grid.Row="3" Text="{Binding Weapon.Type,
             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>

@@ -60,6 +60,14 @@
     <Compile Include="Migrations\202006160954447_changeResourcePriceFromFloatToInt.designer.cs">
       <DependentUpon>202006160954447_changeResourcePriceFromFloatToInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007131201417_AddingPositionToCastle.cs" />
+    <Compile Include="Migrations\202007131201417_AddingPositionToCastle.designer.cs">
+      <DependentUpon>202007131201417_AddingPositionToCastle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007131204286_AddingPositionToCastle1.cs" />
+    <Compile Include="Migrations\202007131204286_AddingPositionToCastle1.designer.cs">
+      <DependentUpon>202007131204286_AddingPositionToCastle1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +87,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006160954447_changeResourcePriceFromFloatToInt.resx">
       <DependentUpon>202006160954447_changeResourcePriceFromFloatToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007131201417_AddingPositionToCastle.resx">
+      <DependentUpon>202007131201417_AddingPositionToCastle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007131204286_AddingPositionToCastle1.resx">
+      <DependentUpon>202007131204286_AddingPositionToCastle1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

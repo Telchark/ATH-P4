@@ -16,6 +16,10 @@ namespace MapDemo.Model
         [Required]
         public string Name { get; set; }
         [Required]
+        public int X { get; set; }
+        [Required]
+        public int Y { get; set; }
+        [Required]
         public virtual ICollection<Armor> Armors { get; set; }
         [Required]
         public virtual ICollection<Weapon> Weapons { get; set; }

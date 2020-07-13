@@ -20,5 +20,16 @@ namespace MapDemo.UI.Wrapper
             get { return GetValue<string>(); }
             set{ SetValue(value); }
         }
+        public int X
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+        public int Y
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+
     }
 }

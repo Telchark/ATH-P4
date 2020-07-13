@@ -1,3 +1,5 @@
+//TODO: zaktualizować opis i mniej więcej godziny
+
 DataAcces:
 	baza jest (nawet z migracją) 
 	navigation property manyToMany jest (jeszcze nieużywany) ale jest
@@ -65,6 +67,3 @@ TODO:
 -wyświtelenie danych na temat itemu po najechaniu na niego (w zakładce castle)
 
 dotychczasowy czas pracy ok.79h (łącznie z szukaniem rozwiązań błędówi oglądaniem tutoriali)
-
-
-The bigger a problem may be, the greater the satisfaction one experiences after they achieve the solution.

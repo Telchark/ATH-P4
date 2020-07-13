@@ -35,10 +35,10 @@
                 new Resource { ResourceId = 4, Name = "Linen Cloth", Price = 240 });
             context.Castles.AddOrUpdate(
                 a => a.CastleId,
-                new Castle { CastleId = 1, Name = "Kildevalk" },
-                new Castle { CastleId = 2, Name = "Praven" },
-                new Castle { CastleId = 3, Name = "Sargoth"},
-                new Castle { CastleId = 4, Name = "Jelkala"});
+                new Castle { CastleId = 1, Name = "Kildevalk", X= 100,Y=100 },
+                new Castle { CastleId = 2, Name = "Praven" ,X = 200, Y = 300 },
+                new Castle { CastleId = 3, Name = "Sargoth", X = 300, Y = 100 },
+                new Castle { CastleId = 4, Name = "Jelkala", X = 350, Y = 350 });
         }
     }
 }

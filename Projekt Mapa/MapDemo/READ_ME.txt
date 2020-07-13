@@ -7,5 +7,5 @@ na własny server SQL którego chcemy użyć np.:
 	providerName="System.Data.SqlClient" />
 </connectionStrings>
 
-Najlepiej przeglądać po kolei elementy mające w nazwie Weapon, ponieważ pozostałe są kopią 
-tylko dla innego zbioru danych.
+Najlepiej przeglądać pokolei elementy mające w nazwie Weapon, ponieważ reszta powstawała 
+na ich podstawie i mogą się tam pojawić jakieś braki lub niedorobienia.
