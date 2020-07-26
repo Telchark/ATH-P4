@@ -85,6 +85,10 @@ namespace MapDemo.UI.ViewModel
                 }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            if (Armor.ArmorId == 0)
+            {
+                Armor.Name = "";
+            }
         }
 
         private Armor CreateArmor()
@@ -102,7 +106,7 @@ namespace MapDemo.UI.ViewModel
             private set { _armor = value; OnPropertyChanged(); }
         }
 
-        public ICommand SaveCommand{ get; set; }
-        public ICommand DeleteCommand{ get; set; }
+        public ICommand SaveCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
     }
 }

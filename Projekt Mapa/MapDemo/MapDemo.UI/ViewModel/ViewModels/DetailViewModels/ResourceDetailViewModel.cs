@@ -83,6 +83,10 @@ namespace MapDemo.UI.ViewModel
                 }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            if (Resource.ResourceId == 0)
+            {
+                Resource.Name = "";
+            }
         }
 
         private Resource CreatResource()

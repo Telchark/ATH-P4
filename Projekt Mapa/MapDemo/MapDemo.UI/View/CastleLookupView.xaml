@@ -13,16 +13,16 @@
                     <Setter Property="HorizontalAlignment" Value="Left"/>
                     <Setter Property="Margin" Value="2"/>
                     <Setter Property="Canvas.Left"
-                            Value="{Binding X,Mode=TwoWay}"/>
+                            Value="{Binding X,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     <Setter Property="Canvas.Top"
-                            Value="{Binding Y,Mode=TwoWay}"/>
+                            Value="{Binding Y,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </Style>
             </ItemsControl.ItemContainerStyle>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas IsItemsHost="True" Width="400" Height="400">
                         <Canvas.Background >
-                            <ImageBrush Stretch="UniformToFill" ImageSource="C:\Users\Endriu\Desktop\mapa.jpg"/>
+                            <ImageBrush Stretch="UniformToFill" ImageSource="/Images/mapa.jpg"/>
                         </Canvas.Background>
                     </Canvas>
                 </ItemsPanelTemplate>

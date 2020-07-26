@@ -1,5 +1,3 @@
-//TODO: zaktualizować opis i mniej więcej godziny
-
 DataAcces:
 	baza jest (nawet z migracją) 
 	navigation property manyToMany jest (jeszcze nieużywany) ale jest
@@ -46,24 +44,23 @@ UI:
 -usuwanie rekordów 
 -walidacja wybranego rekordu i dostosowanie aktywności przyciusku zapisywania (poprzez notifypropertychange i data annotations)
 -dodawanie broni do zamku
+-dodać walidację gdy wypełniamy nowy item
+-MAPA
+-dodawanie przedmiotów do zamku
 TODO:
 -defaultowo detail ma się nie wyświetlać
 -znikanie Detail po usunięciu rekordu 
 -komunikat jak zmieniamy DetailView o niezapisanych danych
--przenieść dodawanie z MainViewModel do DetailViewModel żeby nie prznosić MainViewModel do konteksu custom kontrolki
 -zmienić pole z typem na combobox
--dodać walidację gdy wypełniamy nowy item
 -opisy walidacji
--blokowanie przycisku zapisu gdy detail wróci do pierwotnego stanu (jest zablokowany na początku ale wystarczy coś kliknąć i już działa jak nie ma errorów)
 -dodawanie customowych błędów
--dodawanie przedmiotów do zamku
--wyszukiwanie itemów po kategoriach po nazwach ogólnie we wszystko będzie można kliknąć - może jakiś przycisk wróć
--MAPA chyba zastąpię ją przyciskami (narazie)
+-wyszukiwanie itemów po kategoriach/nazwach (tylko jeśli powstanie lista ze wszystkimi itemami)
 -refactor refactor refactor
 -risorsy żeby ładnie wyglądało 
 -przeniesienie projektu do avaloni albo czegoś podobnego
--unit testing czy jak to sie tam nazywa
+-unit testing 
 -przerobienie rzeczy aby dziedziczyły od itemu który będzie można przypisywać do zamku (żeby nie robić 3 tabelek z wyborami_
 -wyświtelenie danych na temat itemu po najechaniu na niego (w zakładce castle)
+-aktualizowanie mapy po zmienieniu współrzędnych
 
-dotychczasowy czas pracy ok.79h (łącznie z szukaniem rozwiązań błędówi oglądaniem tutoriali)
+dotychczasowy czas pracy ok.95h (łącznie z szukaniem rozwiązań błędówi oglądaniem tutoriali)

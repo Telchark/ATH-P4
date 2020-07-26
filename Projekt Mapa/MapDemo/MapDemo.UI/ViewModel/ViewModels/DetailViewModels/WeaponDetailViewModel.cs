@@ -70,7 +70,7 @@ namespace MapDemo.UI.ViewModel
         {
             var weapon = weaponId.HasValue ? await _dataService.GetByIdAsync(weaponId.Value) : CreateWeapon();
             Weapon = new WeaponWrapper(weapon);
-            Weapon.PropertyChanged += (s, e) =>
+            Weapon.PropertyChanged += (s, e) => // new EventHandler(delegate (Object s, EventArgs e) <===> += (s,e) => 
             {
                 if (!HasChanges)
                 {
@@ -82,10 +82,10 @@ namespace MapDemo.UI.ViewModel
                 }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-            //if (Weapon.Model.WeaponId == 0)
-            //{
-            //    Weapon.Model.Name = "";
-            //}
+            if (Weapon.WeaponId == 0)
+            {
+               Weapon.Name = "";
+            }
         }
 
         private Weapon CreateWeapon()

@@ -120,6 +120,10 @@ namespace MapDemo.UI.ViewModel
                 }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            if (Castle.CastleId == 0)
+            {
+                Castle.Name = "";
+            }
             _allWeapons = await _dataService.GetAllWeaponsAsync();
             _allArmors = await _dataService.GetAllArmorsAsync();
             _allResources = await _dataService.GetAllResourcesAsync();
